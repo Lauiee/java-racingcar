@@ -20,6 +20,6 @@ class CarTest {
     @DisplayName("자동차를 한 칸 전진시킵니다.")
     void move(){
         car.move();
-        Assertions.assertThat(car.getPosition()).isEqualTo(1);
+        Assertions.assertThat(car.printPosition()).isEqualTo("test : -");
     }
 }
