@@ -23,7 +23,7 @@ public class Car {
     }
 
     public int updateTopPosition(int currentTopPosition) {
-        if(this.position>currentTopPosition) return this.position;
+        if(this.position > currentTopPosition) return this.position;
         return currentTopPosition;
     }
 
