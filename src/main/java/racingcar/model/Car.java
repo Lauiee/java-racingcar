@@ -22,5 +22,12 @@ public class Car {
         return s;
     }
 
+    public int updateTopPosition(int currentTopPosition) {
+        if(this.position>currentTopPosition) return this.position;
+        return currentTopPosition;
+    }
 
+    public boolean isWinner(int currentTopPosition) {
+        return this.position==currentTopPosition;
+    }
 }
