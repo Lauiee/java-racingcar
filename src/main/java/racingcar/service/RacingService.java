@@ -17,7 +17,7 @@ public class RacingService {
     }
 
     // 전진 여부 판단 메서드
-    public boolean isMove(){
+    private boolean isMove(){
         return Randoms.pickNumberInRange(0, 9) >= 4;
     }
 
