@@ -7,6 +7,8 @@ import racingcar.model.Cars;
 import racingcar.service.RacingService;
 import racingcar.util.CarNameParser;
 import racingcar.util.TimesParser;
+import racingcar.validator.CarNamesValidation;
+import racingcar.validator.TimesValidation;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -27,10 +29,13 @@ public class RacingController {
 
         // 경주 준비
         String input = inputView.carsInput();
+        CarNamesValidation.validateAllInput(input);
         List<String> carNames = CarNameParser.parseCarName(input);
+        carNames.forEach(CarNamesValidation::validateCarName);
         Cars cars = CarsFactory.createCars(carNames);
 
         String timeInput = inputView.timesInput();
+        TimesValidation.validateAllInput(timeInput);
         int times = TimesParser.parseTimes(timeInput);
 
         // 경주 시작
