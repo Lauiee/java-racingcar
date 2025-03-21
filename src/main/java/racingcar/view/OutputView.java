@@ -11,7 +11,7 @@ import racingcar.model.Cars;
 public class OutputView {
 
     public void printResultMessage(){
-        System.out.println("\n"+RACING_RESULT);
+        System.out.println("\n"+RACING_RESULT.getMessage());
     }
 
     public void printResult(Cars cars){
@@ -23,7 +23,7 @@ public class OutputView {
     }
 
     public void printWinner(List<Car> winner) {
-        System.out.print(WINNER);
+        System.out.print(WINNER.getMessage());
 
         String result = winner.stream()
                 .map(Car::getName)
