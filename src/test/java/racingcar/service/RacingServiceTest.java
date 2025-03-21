@@ -9,10 +9,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.model.Car;
+import racingcar.model.Cars;
 
 class RacingServiceTest {
 
     private RacingService racingService;
+    private Cars cars;
     private Car test1;
     private Car test2;
     private Car test3;
@@ -23,20 +25,26 @@ class RacingServiceTest {
         test1 = new Car("test1");
         test2 = new Car("test2");
         test3 = new Car("test3");
+
+        cars = new Cars();
+        cars.addCar(test1);
+        cars.addCar(test2);
+        cars.addCar(test3);
     }
 
     @Test
     @DisplayName("경주에 참가한 모든 차에 각각 랜덤값을 통한 전진 여부를 판단하여 적용합니다.")
     void 회차_진행(){
-        List<Car> cars = List.of(test1,test2,test3);
         racingService.doRacing(cars);
         // 랜덤값 테스트가 넘 빡셈 일단 결과만 볼게요...
+        for (Car car : cars.getCars()) {
+            System.out.println(car.getName()+"의 이동 결과 : "+car.getPosition());
+        }
     }
 
     @Test
     @DisplayName("각자의 위치를 통해 우승자를 선출합니다.")
     void 우승자_선출(){
-        List<Car> cars = List.of(test1,test2,test3);
         test1.move();
         List<Car> winner = racingService.getWinner(cars);
         assertThat(winner.size()).isEqualTo(1);
@@ -46,7 +54,6 @@ class RacingServiceTest {
     @Test
     @DisplayName("각자의 위치를 통해 우승자를 선출합니다. 단 공동우승도 가능합니다.")
     void 공동_우승자_선출(){
-        List<Car> cars = List.of(test1,test2,test3);
         test1.move();
         test2.move();
         List<Car> winner = racingService.getWinner(cars);

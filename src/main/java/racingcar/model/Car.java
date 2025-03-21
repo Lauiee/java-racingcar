@@ -14,17 +14,16 @@ public class Car {
         this.position++;
     }
 
-    public String printPosition(){
-        String s = name+" : ";
-        for (int i = 0; i<this.position; i++){
-            s = s+"-";
-        }
-        return s;
+    public String getName(){
+        return name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 
     public int updateTopPosition(int currentTopPosition) {
-        if(this.position > currentTopPosition) return this.position;
-        return currentTopPosition;
+        return Math.max(position, currentTopPosition);
     }
 
     public boolean isWinner(int currentTopPosition) {
