@@ -34,9 +34,9 @@ class InputViewTest {
         // Given
         systemIn(input);
         // When
-        String result = inputView.timesInput();
+        int result = inputView.timesInput();
         // then
-        Assertions.assertThat(result).isEqualTo(input);
+        Assertions.assertThat(String.valueOf(result)).isEqualTo(input);
     }
 
     @AfterEach

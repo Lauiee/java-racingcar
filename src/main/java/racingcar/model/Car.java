@@ -15,6 +15,9 @@ public class Car {
         if (name.length() > 5) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_NAME_OVER_FIVE.getMessage());
         }
+        if (!name.matches("[a-zA-Z]+")){
+            throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_ONLY_ENG.getMessage());
+        }
         this.name = name.trim();
         this.position = 0;
     }
