@@ -7,12 +7,19 @@ public class Cars {
 
     private List<Car> cars = new ArrayList<>();
 
-    public List<Car> getCars() {
-        return cars;
+    private Cars(List<Car> cars) {
+        this.cars = cars;
     }
 
-    public void addCar(Car car){
-        cars.add(car);
+    public static Cars from(List<String> carNames){
+        List<Car> carList = carNames.stream()
+                .map(Car::new)
+                .toList();
+        return new Cars(carList);
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 
 }

@@ -6,7 +6,13 @@ public class Car {
     private int position;
 
     public Car(String name) {
-        this.name = name;
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("자동차 이름은 필수입니다.");
+        }
+        if (name.length() > 5) {
+            throw new IllegalArgumentException("자동차 이름은 5자 이내여야 합니다.");
+        }
+        this.name = name.trim();
         this.position = 0;
     }
 
@@ -22,11 +28,5 @@ public class Car {
         return position;
     }
 
-    public int updateTopPosition(int currentTopPosition) {
-        return Math.max(position, currentTopPosition);
-    }
 
-    public boolean isWinner(int currentTopPosition) {
-        return this.position==currentTopPosition;
-    }
 }
