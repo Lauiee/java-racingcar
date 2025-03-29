@@ -18,6 +18,28 @@ public class Cars {
         return new Cars(carList);
     }
 
+    // 1회차 진행
+    public void doRacing(){
+        for (Car car : cars) {
+            car.move();
+        }
+    }
+
+    public List<Car> getWinners(){
+        int maxPosition = getMaxPosition();
+
+        return cars.stream()
+                .filter(car -> car.getPosition() == maxPosition)
+                .toList();
+    }
+
+    private int getMaxPosition() {
+        return cars.stream()
+                .mapToInt(Car::getPosition)
+                .max()
+                .orElse(0);
+    }
+
     public List<Car> getCars() {
         return cars;
     }
