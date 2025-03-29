@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,10 +23,13 @@ class InputViewTest {
     void 정상_입력_자동차_이름(String input){
         // Given
         systemIn(input);
+
         // When
-        String result = inputView.carsInput();
-        // then
-        Assertions.assertThat(result).isEqualTo(input);
+        List<String> result = inputView.carsInput();
+
+        // Then
+        List<String> expected = Arrays.asList(input.split(",\\s*"));
+        Assertions.assertThat(result).isEqualTo(expected);
     }
 
     @DisplayName("정상 입력을 받으면 해당 줄을 읽어옴, 실행 횟수 문자열")

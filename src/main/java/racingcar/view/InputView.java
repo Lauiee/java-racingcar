@@ -1,21 +1,23 @@
 package racingcar.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.List;
 import racingcar.ErrorMessage;
 
 public class InputView {
 
-    public String carsInput() {
+    public List<String> carsInput() {
         String input = readInput(ViewMessage.INPUT_CAR_NAME.getMessage());
         validateDelimiter(input);
         validateBetweenDelimiter(input);
-        return input;
+        return Arrays.stream(input.replaceAll(" ","").split(",")).toList();
     }
 
     public int timesInput() {
         String input = readInput(ViewMessage.INPUT_TIMES.getMessage());
         validateCharacter(input);
-        int times = Integer.parseInt(input);
+        int times = Integer.parseInt(input.trim());
         validateZeroOrNegative(times);
         return times;
     }
@@ -45,16 +47,9 @@ public class InputView {
         }
     }
 
-
     private void validateCharacter(final String input) {
         if (!hasOnlyDigits(input)) {
             throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_ONLY_DIGIT.getMessage());
-        }
-    }
-
-    private void validateZeroOrNegative(final int times) {
-        if (times <= 0){
-            throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_ONLY_POSITIVE.getMessage());
         }
     }
 
@@ -63,4 +58,9 @@ public class InputView {
                 .allMatch(Character::isDigit);
     }
 
+    private void validateZeroOrNegative(final int times) {
+        if (times <= 0){
+            throw new IllegalArgumentException(ErrorMessage.ERROR_INPUT_ONLY_POSITIVE.getMessage());
+        }
+    }
 }
